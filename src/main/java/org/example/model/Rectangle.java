@@ -1,23 +1,17 @@
 package org.example.model;
 
 import java.awt.*;
+import java.awt.geom.Rectangle2D;
 
-public class RectangleShape extends DrawShape {
-
-    public RectangleShape() {
-        super();
-    }
-
-    public RectangleShape(Point startPoint, Point endPoint) {
-        super(startPoint, endPoint);
-    }
+public class Rectangle extends DrawShape {
 
     @Override
     public Shape getShape(Point startPoint, Point endPoint) {
-        int x = Math.min(startPoint.x, endPoint.x);
-        int y = Math.min(startPoint.y, endPoint.y);
-        int width = Math.abs(startPoint.x - endPoint.x);
-        int height = Math.abs(startPoint.y - endPoint.y);
-        return new java.awt.Rectangle(x, y, width, height);
+        return new Rectangle2D.Double(
+                Math.min(startPoint.x, endPoint.x),
+                Math.min(startPoint.y, endPoint.y),
+                Math.abs(endPoint.x - startPoint.x),
+                Math.abs(endPoint.y - startPoint.y)
+        );
     }
 }
