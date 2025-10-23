@@ -1,22 +1,23 @@
-package ua.opnu.model;
+package org.example.model;
 
 import java.awt.*;
-import java.awt.geom.Rectangle2D;
 
-public class Rectangle extends DrawShape {
+public class RectangleShape extends DrawShape {
 
-    public Rectangle() {
+    public RectangleShape() {
+        super();
     }
 
-    public Rectangle(Point startPoint, Point endPoint) {
+    public RectangleShape(Point startPoint, Point endPoint) {
         super(startPoint, endPoint);
     }
 
-    // Для відтворення прямокутника ми використовуємо клас Rectangle2D.Double (клас Double усередині класу Rectangle2D).
-    // Клас Rectangle2D.Double приймає координати типу Double
     @Override
     public Shape getShape(Point startPoint, Point endPoint) {
-        return new Rectangle2D.Double(Math.min(startPoint.getX(), endPoint.getX()), Math.min(startPoint.getY(), endPoint.getY()),
-                Math.abs(startPoint.getX() - endPoint.getX()), Math.abs(startPoint.getY() - endPoint.getY()));
+        int x = Math.min(startPoint.x, endPoint.x);
+        int y = Math.min(startPoint.y, endPoint.y);
+        int width = Math.abs(startPoint.x - endPoint.x);
+        int height = Math.abs(startPoint.y - endPoint.y);
+        return new java.awt.Rectangle(x, y, width, height);
     }
 }
