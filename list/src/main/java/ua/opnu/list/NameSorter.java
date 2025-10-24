@@ -2,27 +2,18 @@ package ua.opnu.list;
 
 import java.util.Comparator;
 
-public class NameSorter implements Comparator {
+public class NameSorter implements Comparator<Student> {
+    
+    private final boolean ascending; // true для зростання, false для спадання
 
-    private boolean order;
-
-    public NameSorter(boolean order) {
-        this.order = order;
+    public NameSorter(boolean ascending) {
+        this.ascending = ascending;
     }
 
     @Override
-    public int compare(Object o1, Object o2) {
-        if (o1 instanceof Student && o2 instanceof Student) {
-            Student s1 = (Student) o1;
-            Student s2 = (Student) o2;
-
-            if (order) {
-                return s1.getName().compareTo(s2.getName());
-            } else {
-                return s2.getName().compareTo(s1.getName());
-            }
-
-        }
-        return 0;
+    public int compare(Student s1, Student s2) {
+        int result = s1.getName().compareTo(s2.getName());
+        // Якщо сортування за спаданням, інвертуємо результат
+        return ascending ? result : -result; 
     }
 }
