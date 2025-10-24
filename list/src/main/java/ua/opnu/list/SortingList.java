@@ -21,8 +21,8 @@ public class SortingList extends Application {
 
     private ObservableList<Student> students;
 
-    // Масиви для відстеження напрямку сортування для кожної кнопки
-    private final boolean[] orderName = {true}; // true = за зростанням
+    
+    private final boolean[] orderName = {true}; 
     private final boolean[] orderLastName = {true};
     private final boolean[] orderMark = {true};
 
@@ -73,37 +73,34 @@ public class SortingList extends Application {
         sortByLastNameButton.setMaxWidth(Double.MAX_VALUE);
         sortByMarkButton.setMaxWidth(Double.MAX_VALUE);
 
-        // Обробка натискання кнопки "Сортувати за ім'ям"
+        
         sortByNameButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                // Викликаємо сортування, передаючи поточний напрямок
                 students.sort(new NameSorter(orderName[0]));
-                orderName[0] = !orderName[0]; // Інвертуємо напрямок для наступного разу
+                orderName[0] = !orderName[0];
             }
         });
 
-        // Обробка натискання на кнопку "Сортувати за прізвищем" 
+        
         sortByLastNameButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                // Використовуємо LastNameSorter
                 students.sort(new LastNameSorter(orderLastName[0])); 
                 orderLastName[0] = !orderLastName[0];
             }
         });
 
-        // Обробка натискання на кнопку "Сортувати за оцінкою" 
+       
         sortByMarkButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                // Використовуємо AverageGradeSorter
-                students.sort(new AverageGradeSorter(orderMark[0])); 
+              
+                students.sort(new AverageMarkSorter(orderMark[0])); 
                 orderMark[0] = !orderMark[0];
             }
         });
 
-        // Створюємо горизонтальний ряд
         HBox hb = new HBox();
         hb.setSpacing(5);
         hb.getChildren().addAll(sortByNameButton, sortByLastNameButton, sortByMarkButton);
