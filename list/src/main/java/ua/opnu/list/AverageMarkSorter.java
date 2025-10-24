@@ -12,8 +12,8 @@ public class AverageGradeSorter implements Comparator<Student> {
 
     @Override
     public int compare(Student s1, Student s2) {
-        // Double.compare повертає <0, 0, або >0
-        int result = Double.compare(s1.getAverageGrade(), s2.getAverageGrade());
+        // ВИПРАВЛЕНО: Використовуємо getAvgMark()
+        int result = Double.compare(s1.getAvgMark(), s2.getAvgMark()); 
         return ascending ? result : -result;
     }
 }
