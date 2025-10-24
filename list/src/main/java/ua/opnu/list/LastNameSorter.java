@@ -2,17 +2,17 @@ package ua.opnu.list;
 
 import java.util.Comparator;
 
-public class NameSorter implements Comparator<Student> {
+public class LastNameSorter implements Comparator<Student> {
     
     private final boolean ascending;
 
-    public NameSorter(boolean ascending) {
+    public LastNameSorter(boolean ascending) {
         this.ascending = ascending;
     }
 
     @Override
     public int compare(Student s1, Student s2) {
-        int result = s1.getName().compareTo(s2.getName());
+        int result = s1.getLastName().compareTo(s2.getLastName());
         return ascending ? result : -result;
     }
 }
